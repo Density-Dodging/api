@@ -21,17 +21,13 @@ def closeDB(db):
     log(TAG, "Closing database connection to " + Config.get("db_host"))
     db.close()
 
-add_density = ("INSERT INTO sightings (epoch_timestamp, latitude, longitude) VALUES (%s, %s, %s)")
-
 def addDensityEntry(db, latitude, longitude):
-    log(TAG, "Adding density entry at lat:" + lat + ", long:" + long)
+    log(TAG, "Adding density entry at lat:" + latitude + ", long:" + longitude)
+
     cursor = db.cursor()
-    entry = {
-        'epoch_timestamp' : int(time.time()),
-        'latitude' : latitude,
-        'longitude' : longitude
-    }
-    print(cursor.execute(add_density, entry))
+    epoch = int(time.time())
+
+    print(cursor.execute(f"INSERT INTO sightings (epoch_timestamp, latitude, longitude) VALUES ({epoch}, {latitude}, {longitude})"))
     db.commit()
     cursor.close()
 
