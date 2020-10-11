@@ -16,7 +16,7 @@ buildings = assignDensityPerBuilding(buildings, densityData)
 
 @app.route('/api/buildings/all')
 def serveBuildings():
-    return jsonify(buildings)
+    return jsonify(buildingsDictToData(buildings))
 
 @app.route('/api/buildings/<id>')
 def serveBuilding(id):

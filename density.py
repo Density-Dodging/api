@@ -4,7 +4,10 @@ TAG = "density.py"
 def assignDensityPerBuilding(buildings, densityData):
     pendingBuildings = buildings
     for key in buildings:
-        buildings[key]['people'] = 0
+        people = []
+        for i in range(buildings[key]['floors']):
+            people.append(0)
+        buildings[key]['people'] = people
     for entry in densityData:
         for key in buildings:
             building = buildings[key]
@@ -20,7 +23,8 @@ def assignDensityPerBuilding(buildings, densityData):
                     if (longitude > longitudeMin):
                         if (longitude < longitudeMax):
                             buildingId = building['id']
-                            buildings[buildingId]['people'] += 1
+                            for floor in buildings[buildingId]['people']:
+                                buildings[buildingId]['people'][floor] += 1
                             log(TAG, "Found entry in building: " + building['id'])
                             break
 

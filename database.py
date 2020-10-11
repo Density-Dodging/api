@@ -47,7 +47,7 @@ def getBuildings(db):
         pendingLocation['latitude'] = middleLatitude
         pendingLocation['longitude'] = middleLongitude
         pendingLocation['floors'] = loc[7]
-        pendingLocation['people'] = 0
+        pendingLocation['people'] = []
         pendingLocation['densityLevel'] = 2
         pendingLocation['type'] = loc[6]
         pendingLocation['latitudeMin'] = loc[2]
@@ -77,3 +77,8 @@ def getDensity(db):
     cursor.close()
 
     return pendingSightings
+
+def getPathNodes(db):
+    log(TAG, "Getting density data")
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM sightings WHERE epoch_timestamp > " + str(timeThreshhold))
