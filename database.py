@@ -21,6 +21,21 @@ def closeDB(db):
     log(TAG, "Closing database connection to " + Config.get("db_host"))
     db.close()
 
+add_density = ("INSERT INTO sightings (epoch_timestamp, latitude, longitude) VALUES (%s, %s, %s)")
+
+def addDensityEntry(db, latitude, longitude):
+    log(TAG, "Adding density entry at lat:" + lat + ", long:" + long)
+    cursor = db.cursor()
+    entry = {
+        'epoch_timestamp' : int(time.time()),
+        'latitude' : latitude,
+        'longitude' : longitude
+    }
+    print(cursor.execute(add_density, entry))
+    db.commit()
+    cursor.close()
+
+
 def getBuildings(db):
     log(TAG, "Creating list of buildings")
     cursor = db.cursor()
@@ -46,6 +61,8 @@ def getBuildings(db):
 
         pendingBuildings[loc[0]] = pendingLocation
 
+    cursor.close()
+
     return pendingBuildings
 
 def getDensity(db):
@@ -60,5 +77,7 @@ def getDensity(db):
         pendingSighting['latitude'] = sighting[2]
         pendingSighting['longitude'] = sighting[3]
         pendingSightings.append(pendingSighting)
+
+    cursor.close()
 
     return pendingSightings
