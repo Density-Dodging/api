@@ -25,7 +25,6 @@ def assignDensityPerBuilding(buildings, densityData):
                             buildingId = building['id']
                             for floor in buildings[buildingId]['people']:
                                 buildings[buildingId]['people'][floor] += 1
-                            log(TAG, "Found entry in building: " + building['id'])
                             break
 
     return pendingBuildings

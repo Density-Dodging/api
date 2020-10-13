@@ -11,6 +11,7 @@ class CampusNode:
         self.id = id
         self.latitude = latitude
         self.longitude = longitude
+        self.neighbors = []
 
 
 def log(tag, message):
@@ -20,7 +21,9 @@ def log(tag, message):
 def buildingsDictToData(buildingsDict):
     buildingsArr = []
     for building in buildingsDict.items():
-        print(building[1]['id'] + ": " + str(building[1]['people']))
+        totalInBuilding = 0
+        for floor in building[1]['people']:
+            totalInBuilding += floor
         buildingEach = {
             "id": building[1]['id'],
             "buildingName": building[1]['buildingName'],
@@ -29,7 +32,8 @@ def buildingsDictToData(buildingsDict):
             "floors": building[1]['floors'],
             "people": building[1]['people'],
             "densityLevel": building[1]['densityLevel'],
-            "type": building[1]['type']
+            "type": building[1]['type'],
+            "url": building[1]['url']
         }
         buildingsArr.append(buildingEach)
     
