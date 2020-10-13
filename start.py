@@ -43,7 +43,9 @@ def findRoute():
     allNodes = initializePathfinding(pathNodes, edges, buildings, doFuzz)
 
     fromID = request.args.get('from')
+    appendStart = False
     if fromID is None:
+        appendStart = True
         from_latitude = float(request.args.get('from_latitude'))
         from_longitude = float(request.args.get('from_longitude'))
         fromID = nearestNeighbor(allNodes, from_latitude, from_longitude)
@@ -58,4 +60,6 @@ def findRoute():
 
     ids = pathFind(fromID, toID)
     coords = idsToCoords(ids, allNodes)
+    if (appendStart):
+        coords.append((from_latitude, from_longitude))
     return jsonify(coords)
