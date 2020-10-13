@@ -108,6 +108,7 @@ def getEdges(db):
         edgeEach = {}
         edgeEach['to'] = edge[1]
         edgeEach['from'] = edge[0]
+        edgeEach['distance'] = 3
         edges.append(edgeEach)
 
     return edges

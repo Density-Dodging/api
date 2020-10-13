@@ -1,4 +1,5 @@
 import json
+import math
 with open('config.json') as config_file:
     config = json.load(config_file)
 
@@ -6,17 +7,13 @@ class Config:
     def get(property):
         return config[property]
 
-class CampusNode:
-    def __init__(self, id, latitude, longitude):
-        self.id = id
-        self.latitude = latitude
-        self.longitude = longitude
-        self.neighbors = []
-
-
 def log(tag, message):
     if (Config.get("environment") == "dev"):
         print(f"[{tag}] {message}")
+
+def pointsDistance(xOne, yOne, xTwo, yTwo):
+    result = math.sqrt( ((xOne-xTwo)**2)+((yOne-yTwo)**2) )
+    return result
 
 def buildingsDictToData(buildingsDict):
     buildingsArr = []
