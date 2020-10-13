@@ -1,4 +1,4 @@
-from database import getPathNodes, getEdges
+from database import getPathNodes, getEdges, initDB, closeDB
 from ddUtils import *
 import heapq
 import sys
@@ -84,16 +84,10 @@ class Graph:
     def get_previous(self, current):
         return self.previous
 
-# pathNodes = []
-# buildingNodes = []
-# edges = []
-# allNodes = []
 g = Graph()
 
-def initializePathfinding(db, buildingNodesDict, doFuzz):
+def initializePathfinding(pathNodes, edges, buildingNodesDict, doFuzz):
     log(TAG, "Initializing pathfinding data")
-    pathNodes = getPathNodes(db)
-    edges = getEdges(db)
     buildingNodes = []
     for key in buildingNodesDict:
         selectedBuilding = buildingNodesDict[key]

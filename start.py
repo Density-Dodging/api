@@ -40,7 +40,7 @@ def findRoute():
     if (doFuzzArg is not None and doFuzzArg.lower() == 'true'):
         doFuzz = True
 
-    allNodes = initializePathfinding(db, buildings, doFuzz)
+    allNodes = initializePathfinding(pathNodes, edges, buildings, doFuzz)
 
     fromID = request.args.get('from')
     if fromID is None:
