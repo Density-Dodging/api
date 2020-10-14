@@ -15,7 +15,14 @@ def assignDensityPerBuilding(buildings, densityData):
                 randomIndex = 0
             people.append(randoms[randomIndex])
             cumulator += randoms[randomIndex]
-        pendingBuildings[key]['density'] = cumulator / len(people)
+        densityPercent = cumulator / len(people)
+        densityLevel = 1
+        if (densityPercent >= 40): 
+            densityLevel = 2
+        if (densityPercent >= 70): 
+            densityLevel = 3
+        pendingBuildings[key]['density'] = densityPercent
+        pendingBuildings[key]['densityLevel'] = densityLevel
         pendingBuildings[key]['people'] = people
     # for entry in densityData:
     #     for key in buildings:

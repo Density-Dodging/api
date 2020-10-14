@@ -17,10 +17,8 @@ def pointsDistance(xOne, yOne, xTwo, yTwo):
 
 def buildingsDictToData(buildingsDict):
     buildingsArr = []
-    for building in buildingsDict.items():
-        totalInBuilding = 0
-        for floor in building[1]['people']:
-            totalInBuilding += floor
+    print(buildingsDict)
+    for building in buildingsDict.items():       
         buildingEach = {
             "id": building[1]['id'],
             "buildingName": building[1]['buildingName'],
@@ -30,7 +28,8 @@ def buildingsDictToData(buildingsDict):
             "people": building[1]['people'],
             "densityLevel": building[1]['densityLevel'],
             "type": building[1]['type'],
-            "url": building[1]['url']
+            "url": building[1]['url'],
+            "density" : building[1]['density']
         }
         buildingsArr.append(buildingEach)
     

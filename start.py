@@ -63,4 +63,3 @@ def findRoute():
     if (appendStart):
         coords.append((from_latitude, from_longitude))
     return jsonify(coords)
-    
