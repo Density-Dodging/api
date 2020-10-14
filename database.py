@@ -48,7 +48,7 @@ def getBuildings(db):
         pendingLocation['longitude'] = middleLongitude
         pendingLocation['floors'] = loc[7]
         pendingLocation['people'] = []
-        pendingLocation['densityLevel'] = 2
+        pendingLocation['densityLevel'] = 0
         pendingLocation['type'] = loc[6]
         pendingLocation['latitudeMin'] = loc[2]
         pendingLocation['latitudeMax'] = loc[4]

@@ -8,30 +8,33 @@ def assignDensityPerBuilding(buildings, densityData):
     randomIndex = 24
     for key in buildings:
         people = []
+        cumulator = 0
         for i in range(buildings[key]['floors']):
             randomIndex += 1
             if (randomIndex >= len(randoms) - 1):
                 randomIndex = 0
             people.append(randoms[randomIndex])
-        buildings[key]['people'] = people
-    for entry in densityData:
-        for key in buildings:
-            building = buildings[key]
-            latitude = entry['latitude']
-            latitudeMin = building['latitudeMin']
-            latitudeMax = building['latitudeMax']
-            longitude = entry['longitude']
-            longitudeMin = building['longitudeMin']
-            longitudeMax = building['longitudeMax']
+            cumulator += randoms[randomIndex]
+        pendingBuildings[key]['density'] = cumulator / len(people)
+        pendingBuildings[key]['people'] = people
+    # for entry in densityData:
+    #     for key in buildings:
+    #         building = buildings[key]
+    #         latitude = entry['latitude']
+    #         latitudeMin = building['latitudeMin']
+    #         latitudeMax = building['latitudeMax']
+    #         longitude = entry['longitude']
+    #         longitudeMin = building['longitudeMin']
+    #         longitudeMax = building['longitudeMax']
 
-            if (latitude > latitudeMin):
-                if (latitude < latitudeMax):
-                    if (longitude > longitudeMin):
-                        if (longitude < longitudeMax):
-                            buildingId = building['id']
-                            for floor in buildings[buildingId]['people']:
-                                #buildings[buildingId]['people'][floor] += 1
-                                True
-                            break
+    #         if (latitude > latitudeMin):
+    #             if (latitude < latitudeMax):
+    #                 if (longitude > longitudeMin):
+    #                     if (longitude < longitudeMax):
+    #                         buildingId = building['id']
+    #                         for floor in buildings[buildingId]['people']:
+    #                             #buildings[buildingId]['people'][floor] += 1
+    #                             True
+    #                         break
 
     return pendingBuildings
