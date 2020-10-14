@@ -110,10 +110,6 @@ def initializePathfinding(pathNodes, edges, buildingNodesDict, doFuzz):
         if (doFuzz and roundNum % 10 > 7):
             multiplier = 100
         g.add_edge(edge['from'], edge['to'], distanceBetween(allNodes, edge['to'], edge['from']) * multiplier)
-        print(distanceBetween(allNodes, edge['to'], edge['from']))
-        print("Mult:")
-        print(distanceBetween(allNodes, edge['to'], edge['from']) * multiplier)
-        print("#########")
         multiplier = 1
 
     return allNodes
